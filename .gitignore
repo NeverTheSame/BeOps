@@ -7,6 +7,9 @@ _site/
 # Python directory (contains sensitive config files)
 python/
 
+# Configuration files with sensitive data
+configs/
+
 # Python
 __pycache__/
 *.py[cod]
