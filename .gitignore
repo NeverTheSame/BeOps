@@ -1,4 +1,40 @@
+# Jekyll build artifacts
 _site/
-_draft/
+.sass-cache/
 .jekyll-cache/
+.jekyll-metadata
+
+# Python directory (contains sensitive config files)
+python/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
 .idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
