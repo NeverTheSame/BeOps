@@ -43,8 +43,6 @@ GEM
       webrick (~> 1.7)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
-    jekyll-readme-index (0.3.0)
-      jekyll (>= 3.0, < 5.0)
     jekyll-sass-converter (3.0.0)
       sass-embedded (~> 1.54)
     jekyll-watch (2.2.1)
@@ -87,11 +85,11 @@ GEM
 
 PLATFORMS
   arm64-darwin-24
+  arm64-darwin-25
 
 DEPENDENCIES
   jekyll
   jekyll-feed
-  jekyll-readme-index
   jemoji
   webrick
 
