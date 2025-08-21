@@ -1,5 +1,5 @@
 ---
-title: Kubernetes
+title: Ingress Controllers
 author: Kirill Kuklin
 date: 2024-12-17
 category: k8s

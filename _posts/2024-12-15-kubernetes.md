@@ -1,5 +1,5 @@
 ---
-title: Kubernetes
+title: Readiness Probes
 author: Kirill Kuklin
 date: 2024-12-15
 category: k8s

@@ -1,5 +1,5 @@
 ---
-title: Your-VS-Code-Deserves-a-Local-Genius
+title: Your VS Code Deserves a Local Genius
 author: Kirill Kuklin
 date: 2025-08-21
 category: devops
