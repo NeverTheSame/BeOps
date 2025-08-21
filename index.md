@@ -10,13 +10,13 @@ Welcome to BeOps, your comprehensive resource for DevOps best practices, Kuberne
 
 ## 🚀 Latest Posts
 
-{% raw %}{% for post in site.posts limit:5 %}
+{% for post in site.posts limit:5 %}
 ### [{{ post.title }}]({{ post.url }})
 **{{ post.date | date: "%B %d, %Y" }}** - {{ post.category | capitalize }}
 
 {{ post.excerpt | strip_html | truncatewords: 30 }}
 
-{% endfor %}{% endraw %}
+{% endfor %}
 
 ## 📚 Categories
 
