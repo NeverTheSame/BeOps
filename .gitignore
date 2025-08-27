@@ -9,6 +9,8 @@ python/
 
 # Configuration files with sensitive data
 configs/
+# Service account keys (extra protection)
+configs/service-account.json
 
 # Python
 __pycache__/
@@ -42,3 +44,6 @@ Desktop.ini
 
 # Logs
 *.log
+
+.specstory/
+.cursorindexingignore

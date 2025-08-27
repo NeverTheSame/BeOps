@@ -9,6 +9,7 @@ layout: post
 So you’re working in VS Code and want a fully private, on-prem AI helper? Connecting it to a local LLM like Ollama ticks all the boxes: no API bills, offline access, total data control, and freedom to pick your favorite model (think CodeLlama). Here’s a friendly walkthrough of how it all fits, what commands fire under the hood, performance trade-offs, limits you’ll bump into, plus a config-and-code demo so you can spin up your own setup.
 
 First, at a glance, the pieces look like this:
+
 • VS Code editor with the Continue extension (UI hooks and command-palette commands)  
 • Ollama daemon running locally as your LLM server  
 • Your model files (for example, codellama-7b)  
@@ -20,13 +21,16 @@ Flow in a nutshell:
 4) Continue parses those tokens and shows them right in your editor or pane.
 
 Digging into the interfaces:
+
 • Ollama CLI  
    – `ollama pull <model>`  
    – `ollama run <model> [--json] [--stream] [--system "<msg>"] --prompt "<text>"`  
    – `ollama serve` (optional HTTP server mode)  
+
 • Ollama HTTP API (once you’ve run `ollama serve`)  
    – POST /chat { model, prompt, stream }  
    – GET /models, DELETE /models/<name>  
+
 • Your VS Code settings (either in .vscode/settings.json or user settings):  
   {  
     "continue.provider": "ollama",  
