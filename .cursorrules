@@ -1,0 +1,108 @@
+# BeOps Project Rules for Cursor Agent
+
+## Project Overview
+BeOps is a comprehensive documentation site covering DevOps best practices, Kubernetes, and Site Reliability Engineering (SRE) principles. The project includes:
+- Jekyll-based documentation site with GitHub Pages hosting
+- Python content generation tools in `posts-generator/` directory
+- AI-powered content creation using OpenAI and Google Gemini APIs
+
+## Code Style
+
+### Python (posts-generator/)
+- Follow PEP 8 style guidelines
+- Use meaningful variable names
+- Add docstrings for functions and classes
+- Use type hints where appropriate
+- Keep functions focused and single-purpose
+- Always activate virtual environment before executing Python commands: `source posts-generator/py-feedparser/bin/activate`
+
+### Jekyll/Markdown
+- Use consistent front matter format
+- Follow Jekyll naming conventions for posts: `YYYY-MM-DD-title.md`
+- Use descriptive file names with dates
+- Maintain consistent heading hierarchy
+
+## File Structure
+
+### Posts
+- Store in `_posts/` with format: `YYYY-MM-DD-title.md`
+- Use consistent front matter
+- Include proper categories and tags
+
+### Assets
+- Images go in `assets/`
+- Keep file sizes optimized
+- Use descriptive filenames
+
+### Python Tools
+- Main scripts in `posts-generator/`
+- Config files in `posts-generator/configs/`
+- Generated content in `posts-generator/produced_posts/`
+- Logs in `posts-generator/logs/`
+
+## Environment Setup
+
+### Python Virtual Environment
+- Location: `posts-generator/py-feedparser/`
+- Always activate before running Python commands: `source posts-generator/py-feedparser/bin/activate`
+- Install dependencies: `pip install -r posts-generator/requirements.txt`
+
+### Environment Variables
+- API keys stored in `.env` file (not in version control)
+- OpenAI: `OPENAI_API_KEY`
+- Google Gemini: `GOOGLE_APPLICATION_CREDENTIALS="configs/service-account.json"`
+
+## Common Commands
+
+### Jekyll Site
+```bash
+bundle install
+bundle exec jekyll serve --livereload
+bundle exec jekyll build
+```
+
+### Python Content Generation
+```bash
+cd posts-generator
+source py-feedparser/bin/activate
+python py-feedparser.py --config config-4o.json
+```
+
+### Testing
+```bash
+cd posts-generator
+source py-feedparser/bin/activate
+python py-feedparser.py --test
+python title_generator.py --test
+python youtube_processor.py --test
+```
+
+## Security Considerations
+- Never commit API keys or sensitive credentials
+- Use `.env` file for environment variables
+- Keep `configs/service-account.json` out of public repos
+- Review generated content before publishing
+
+## AI Integration
+- OpenAI GPT-4o: Use for content generation
+- Google Gemini: Use for YouTube content processing
+- Prompts stored in `posts-generator/prompts.json`
+- Implement proper rate limiting and error handling
+- Log all API interactions for debugging
+
+## Workflow Guidelines
+1. Always activate virtual environment before Python commands
+2. Check logs in `posts-generator/logs/` for errors
+3. Review generated content before adding to `_posts/`
+4. Test Jekyll builds locally before pushing
+5. Monitor API usage and costs
+
+## Key Files Reference
+- `AGENTS.md`: Project overview and setup instructions
+- `posts-generator/AGENTS.md`: Subproject-specific documentation
+- `posts-generator/py-feedparser.py`: Main content generation script
+- `posts-generator/title_generator.py`: AI-powered title generation
+- `posts-generator/youtube_processor.py`: YouTube content processing
+- `posts-generator/openai_worker_4o.py`: OpenAI API integration
+- `posts-generator/prompts.json`: AI prompts and instructions
+
