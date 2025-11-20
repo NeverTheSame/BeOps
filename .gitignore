@@ -4,8 +4,8 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 
-# Python directory (contains sensitive config files)
-python/
+# Posts generator directory (contains sensitive config files)
+posts-generator/
 
 # Configuration files with sensitive data
 configs/
