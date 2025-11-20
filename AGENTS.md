@@ -118,6 +118,9 @@ bundle exec jekyll build --verbose
 3. Add to `_posts/` directory
 4. Commit and push to trigger rebuild
 
+### Agent Workflow Preferences
+- When the user requests creation of a new post, automatically add the newly created Markdown file to git and push the commit to the `gh-pages` branch.
+
 ## Common Tasks
 
 ### Adding New Content
