@@ -111,6 +111,7 @@ bundle exec jekyll build --verbose
 - Site automatically builds on push to main branch
 - Check GitHub Actions for build status
 - Live site: https://neverthesame.github.io/BeOps/
+- All authoring and content changes must be made from the `gh-pages` branch.
 
 ### Content Updates
 1. Generate new content using Python tools
