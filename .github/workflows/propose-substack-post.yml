@@ -1,0 +1,102 @@
+name: Propose Substack post
+
+# When a new blog post lands on gh-pages, rewrite it as a SHORTER post (keeping
+# all technical detail), in English, with a backlink to the canonical BeOps
+# post, and create it as a DRAFT on the author's Substack for manual review.
+# Nothing is auto-published.
+
+on:
+  push:
+    branches: [gh-pages]
+    paths:
+      - '_posts/**'
+  workflow_dispatch:
+    inputs:
+      post_path:
+        description: 'Path to a _posts/*.md file (repo-root relative)'
+        required: false
+        default: ''
+
+concurrency:
+  group: propose-substack-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # need history to diff added posts
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: posts-generator/requirements-rag.txt
+
+      - name: Install deps
+        working-directory: posts-generator
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-rag.txt
+          pip install -r requirements-substack.txt
+
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-MiniLM-L6-v2-v1
+
+      - name: Determine changed posts
+        id: changed
+        run: |
+          set -euo pipefail
+          if [ -n "${{ github.event.inputs.post_path }}" ]; then
+            echo "${{ github.event.inputs.post_path }}" > /tmp/posts.txt
+          else
+            BEFORE="${{ github.event.before }}"
+            EMPTY_TREE="$(git hash-object -t tree /dev/null)"
+            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+              git diff --diff-filter=A --name-only "$EMPTY_TREE" "${{ github.sha }}" -- '_posts/*.md' > /tmp/posts.txt
+            elif git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+              git diff --diff-filter=A --name-only "$BEFORE" "${{ github.sha }}" -- '_posts/*.md' > /tmp/posts.txt
+            else
+              echo "::error::before commit $BEFORE unavailable; cannot determine new posts"
+              exit 1
+            fi
+          fi
+          echo "----- new posts -----"
+          cat /tmp/posts.txt || true
+          if [ -s /tmp/posts.txt ]; then
+            echo "has_posts=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_posts=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Draft Substack posts
+        if: steps.changed.outputs.has_posts == 'true'
+        working-directory: posts-generator
+        env:
+          NEON_DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+          SUBSTACK_COOKIES_STRING: ${{ secrets.SUBSTACK_COOKIES_STRING }}
+          SUBSTACK_EMAIL: ${{ secrets.SUBSTACK_EMAIL }}
+          SUBSTACK_PASSWORD: ${{ secrets.SUBSTACK_PASSWORD }}
+          SUBSTACK_PUBLICATION_URL: ${{ vars.SUBSTACK_PUBLICATION_URL }}
+          PYTHONPATH: ${{ github.workspace }}/posts-generator
+        run: |
+          set -uo pipefail
+          failed=0
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            echo "::group::Drafting Substack post for $f"
+            python substack_drafter.py "../$f" -k 6 || { echo "::error::failed for $f"; failed=1; }
+            echo "::endgroup::"
+          done < /tmp/posts.txt
+          exit "$failed"
