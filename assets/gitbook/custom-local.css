@@ -348,6 +348,17 @@ html, body,
   background: var(--bo-bg-1) !important;
 }
 
+/* colorful.css is a light theme: it paints strings, interpolations and regexes
+   with their own pale backgrounds, which show as white boxes in dark mode.
+   Let tokens sit on the block background instead. */
+.highlight .s, .highlight .sb, .highlight .dl, .highlight .s1, .highlight .s2,
+.highlight .sh, .highlight .si, .highlight .sr, .highlight .err {
+  background-color: transparent !important;
+}
+.highlight .sr {
+  color: inherit;
+}
+
 /* "$ " terminal prompt flavor on inline code that starts with $ — opt-in */
 .prompt::before {
   content: "$ ";
