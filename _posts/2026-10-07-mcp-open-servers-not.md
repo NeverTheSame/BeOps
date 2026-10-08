@@ -181,3 +181,10 @@ tokens.
   `issuer` still go wherever the server says.
 - **Treat every SaaS MCP server as a dependency** with its own policy, and
   have a plan for the day it says no.
+
+## Also this week
+
+Three stories, one thread: agents and the tools around them are moving faster than the checks on them.
+
+- [Strata Is Fast. Nobody Has Shown It's Right Yet.]({{ '/ai/2026-10-07-strata-speed-vs-quality.html' | relative_url }}): a speed claim that reproduces, and an accuracy claim nobody has measured on your task.
+- [The Agents Didn't Break In. They Just Kept Asking.]({{ '/sre/2026-10-07-agents-load-wikidata.html' | relative_url }}): what agent traffic did to a public service, and why sampled rate limits missed it.

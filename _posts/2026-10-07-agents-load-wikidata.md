@@ -180,3 +180,10 @@ cost close to zero.
   the most.
 - **Treat every URL-fetching feature as a proxy:** limit where it can go, and log
   who asked.
+
+## Also this week
+
+Three stories, one thread: agents and the tools around them are moving faster than the checks on them.
+
+- [MCP Is Open. The Servers Aren't.]({{ '/ai/2026-10-07-mcp-open-servers-not.html' | relative_url }}): an open protocol, with servers that pick which agents get in.
+- [Strata Is Fast. Nobody Has Shown It's Right Yet.]({{ '/ai/2026-10-07-strata-speed-vs-quality.html' | relative_url }}): a speed claim that reproduces, and an accuracy claim nobody has measured on your task.

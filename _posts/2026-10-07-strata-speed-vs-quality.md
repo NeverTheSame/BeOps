@@ -176,3 +176,10 @@ on.
   answers, lower after long prompts. That's their run, text only.
 - **Run 20-50 of your own prompts with known answers** through both engines at
   temperature 0. Score accuracy first, speed second.
+
+## Also this week
+
+Three stories, one thread: agents and the tools around them are moving faster than the checks on them.
+
+- [MCP Is Open. The Servers Aren't.]({{ '/ai/2026-10-07-mcp-open-servers-not.html' | relative_url }}): an open protocol, with servers that pick which agents get in.
+- [The Agents Didn't Break In. They Just Kept Asking.]({{ '/sre/2026-10-07-agents-load-wikidata.html' | relative_url }}): what agent traffic did to a public service, and why sampled rate limits missed it.
