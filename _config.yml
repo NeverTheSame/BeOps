@@ -1,10 +1,10 @@
 # Configurations
 title:            BeOps
-longtitle:        BeOps - Best Practices for DevOps and SRE.
+longtitle:        "BeOps: shipping AI that stays up. Evaluation, cost and reliability, from an SRE's notebook."
 author:           Kirill Kuklin
 email:            beops.it@gmail.com
 description: >
-  BeOps - Best Practices for DevOps and SRE.
+  BeOps: shipping AI that stays up. Evaluation, cost and reliability, from an SRE's notebook.
 
 version:          1.0
 gitbook_version:  3.2.3

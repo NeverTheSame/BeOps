@@ -1,6 +1,6 @@
 ---
 layout: home
-title: BeOps - Best Practices for DevOps and SRE
+title: "BeOps: shipping AI that stays up. Evaluation, cost and reliability, from an SRE's notebook"
 permalink: /
 ---
 

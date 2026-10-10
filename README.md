@@ -1,4 +1,4 @@
-# BeOps - Best Practices for DevOps and SRE
+# BeOps: shipping AI that stays up. Evaluation, cost and reliability, from an SRE's notebook
 
 A comprehensive documentation site covering DevOps best practices, Kubernetes, and Site Reliability Engineering (SRE) principles.
 
