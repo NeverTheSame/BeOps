@@ -26,7 +26,7 @@ Language Models), a June paper from Mao, Gu, Chauhan, Zhang, Kang and Mirhoseini
 ([arXiv 2606.10662](https://arxiv.org/abs/2606.10662)). What's new this month is
 that it shipped as a [plugin for Claude Code and
 Codex](https://github.com/Decentralized-LM/delm-agent-plugin), so you can try it
-on your own repo. Here's what it is, what the numbers say, and where I'd use it.
+on your own repo.
 
 ## The problem has a name: bubbles
 
@@ -69,12 +69,11 @@ DeLM removes the main agent. In its place are two shared structures:
   including failed approaches. Fixes are appended as new entries, not overwrites,
   so a peer can pick up the latest version of a file.
 
-**No one is in charge, and that's the point.** Agents notice overlap themselves.
+**No one is in charge.** Agents notice overlap themselves.
 In one logged run, agent 1 saw that agent 3 had just claimed the same
 five-parameter tuning job, killed its own process and moved on.
 
-The overhead is small. The shared context stayed **under 15K tokens** at task
-end, and reading it cost between 1.69% and 17.68% of the task's spend.
+The shared context stayed **under 15K tokens** at task end, and reading it cost between 1.69% and 17.68% of the task's spend.
 
 ## The numbers
 
@@ -144,8 +143,8 @@ into a single timeline, because here you want one answer, not four.
 
 ## What to take away
 
-- **Bubbles are the hidden cost of multi-agent setups.** Measure how much agent
-  time is spent waiting before you add more agents.
+- **Measure the bubbles first.** Check how much agent time is spent waiting
+  before you add more agents.
 - **A shared queue plus a shared notebook beat a manager agent** on these
   benchmarks: up to 17.5 points more accurate and up to 2.49x faster.
 - **Budget by cost per task, not per submission.** Faster can mean 2 to 3 times
