@@ -1,0 +1,22 @@
+name: Daily Pages rebuild
+
+# GitHub Pages (legacy build from gh-pages) skips posts dated in the future and
+# only rebuilds on push. This asks for a rebuild every morning so scheduled
+# posts (front matter "date: YYYY-MM-DD 09:00:00 -0700") go live on their day.
+
+on:
+  schedule:
+    - cron: '20 16 * * *'   # 16:20 UTC = 09:20 Pacific (PDT)
+  workflow_dispatch:
+
+permissions:
+  pages: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request a Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
