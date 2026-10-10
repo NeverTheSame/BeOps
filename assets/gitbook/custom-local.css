@@ -271,6 +271,15 @@ html, body,
 .markdown-section table tr:nth-child(2n) td {
   background: var(--bo-bg-1) !important;
 }
+/* style.css paints every row #fff (and even rows #f8f8f8). With transparent
+   cells that white shows through behind light dark-mode text. */
+.markdown-section table tr,
+.markdown-section table tr:nth-child(2n) {
+  background-color: transparent !important;
+}
+.markdown-section table td {
+  color: var(--bo-fg-1) !important;
+}
 
 /* blockquote */
 .markdown-section blockquote {
