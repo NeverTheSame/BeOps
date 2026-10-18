@@ -63,7 +63,7 @@ every prompt you paste there as non-confidential.** For a public demo video,
 fine. For footage from your factory floor, I'd think twice, or self-host.
 
 The budgets are small and stated: 4,000 characters for the user prompt
-(recommended 400 tokens or fewer), 250 characters for the system prompt. That
+(recommended 400 tokens or fewer), 250 tokens for the system prompt. That
 sizes it for quick probes, not working sessions.
 
 ## The format contract is enforced, not suggested
@@ -123,7 +123,7 @@ rent anything.
 ## What to take away
 
 - Cosmos is NVIDIA's open world-model platform for physical AI: a Reasoner
-  (text out) and a Generator (video, sound, action out), plus separate
+  (text out) and a Generator (vision, sound, action out), plus separate
   training, curation, and evaluation repos, per the README.
 - The hosted nano-reasoner playground is free, login-free, and fast to try,
   but its terms record your inputs and outputs and share them with third-party
